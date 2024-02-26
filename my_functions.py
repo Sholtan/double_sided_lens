@@ -36,7 +36,8 @@ def get_intersection_point(start_point, direction, sphere_center, radius):
     point = np.array(start_point + p * direction)
     distance_from_axis = np.sqrt(point[0]*point[0] + point[1]*point[1])
     if distance_from_axis > 410:
-        raise Exception('\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Intersection point is too far from axis', distance_from_axis)
+        print("Intersection point is too far from axis", distance_from_axis)
+        #raise Exception('\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Intersection point is too far from axis', distance_from_axis)
     return point
 
 

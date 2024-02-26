@@ -36,8 +36,12 @@ def find_z(start_point, angle_to_the_axis, sphere_center, radius):
     second_refracted_direction = reflect(refracted_direction, np.array([0, 0, -1850.]), second_intersection_point, in_or_out='out')
     #print("\n second_refracted_direction: ", second_refracted_direction)
 
-    focal_distance = 1923.
-    #focal_distance = 1600.
+    focal_distance = 1923.    # farthest  
+    #focal_distance = 1808.    # at zero angle  
+    #focal_distance = 1755.    # at 5  
+    #focal_distance = 1665.    # at 10  
+    focal_distance = 1605.    # at 12.5  
+
 
     p = (focal_distance - second_intersection_point[2])/second_refracted_direction[2]
     x = second_intersection_point[0] + p*second_refracted_direction[0]
@@ -51,6 +55,9 @@ def find_z(start_point, angle_to_the_axis, sphere_center, radius):
 
 
 angle_to_the_axis = np.arctan(400/1800)*rad_to_deg
+#angle_to_the_axis = 0.
+#angle_to_the_axis = 5.
+#angle_to_the_axis = 10.
 print("\n angle_to_the_axis in degrees: ", angle_to_the_axis)
 
 sphere_center = np.array([0, 0, 1850.])
@@ -62,11 +69,11 @@ radius = 1900.  # in mm
 out_x = []
 out_y = []
 
-n = 4000
+n = 8000
 rng = np.random.default_rng()
 
 angles = 2*np.pi * rng.random((n,))
-rs = 400* rng.random((n,))
+rs = 410* rng.random((n,))
 
 x = []
 y = []
