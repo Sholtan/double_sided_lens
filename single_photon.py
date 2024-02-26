@@ -16,25 +16,25 @@ def find_z(start_point, angle_to_the_axis, sphere_center, radius):
 
 
     direction = np.array([np.sin(angle_to_the_axis*deg_to_rad), 0, np.cos(angle_to_the_axis*deg_to_rad)])
-    #print("\n direction: ", direction)
+    print("\n direction: ", direction)
 
     intersection_point = get_intersection_point(start_point, direction, sphere_center, radius)
-    #print("\n intersection_point: ", intersection_point)
+    print("\n intersection_point: ", intersection_point)
 
     all_x.append(intersection_point[0])
     all_z.append(intersection_point[2])
 
     refracted_direction = reflect(direction, sphere_center, intersection_point, in_or_out='in')
-    #print("\n refracted_direction: ", refracted_direction)
+    print("\n refracted_direction: ", refracted_direction)
 
     second_intersection_point = get_intersection_point(intersection_point, refracted_direction, np.array([0, 0, -1850.]), radius)
-    #print("\n second_intersection_point: ", second_intersection_point)
+    print("\n second_intersection_point: ", second_intersection_point)
 
     all_x.append(second_intersection_point[0])
     all_z.append(second_intersection_point[2])   
 
     second_refracted_direction = reflect(refracted_direction, np.array([0, 0, -1850.]), second_intersection_point, in_or_out='out')
-    #print("\n second_refracted_direction: ", second_refracted_direction)
+    print("\n second_refracted_direction: ", second_refracted_direction)
 
     focal_distance = 1923.
     #focal_distance = 1600.
@@ -62,23 +62,12 @@ radius = 1900.  # in mm
 out_x = []
 out_y = []
 
-n = 4000
-rng = np.random.default_rng()
 
-angles = 2*np.pi * rng.random((n,))
-rs = 400* rng.random((n,))
-
-x = []
-y = []
-
-for i in range(n):
-    x.append(rs[i] * np.cos(angles[i]))
-    y.append(rs[i] * np.sin(angles[i]))
-
+n = 1
 
 ax = plt.subplot()
 for i in range(n):
-    zz = find_z(np.array([x[i], y[i], -50]), angle_to_the_axis, sphere_center, radius)
+    zz = find_z(np.array([0, 0, -50]), angle_to_the_axis, sphere_center, radius)
     out_x.append(zz[0])
     out_y.append(zz[1])
     all_x = zz[2]
