@@ -35,10 +35,12 @@ def get_intersection_point(start_point, direction, sphere_center, radius):
     #print("start_point, p, direction", (start_point, p, direction), "\n\n")
     point = np.array(start_point + p * direction)
     distance_from_axis = np.sqrt(point[0]*point[0] + point[1]*point[1])
+    outside_lens = False
     if distance_from_axis > 410:
         print("Intersection point is too far from axis", distance_from_axis)
+        outside_lens = True
         #raise Exception('\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Intersection point is too far from axis', distance_from_axis)
-    return point
+    return (point, outside_lens)
 
 
 def reflect(direction, sphere_center, intersection_point, in_or_out):
